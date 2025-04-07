@@ -1,0 +1,60 @@
+mkdir ts-study
+cd ts-study
+npm init --yes              - package.json 설치
+npm i --save-dev typescript
+cat package.json            - 잘 설치됐나 확인
+
+[tsconfig 설치 및 설정]
+npx tsc --init              - ts 컴파일할 때 필요한 컨피그 설치(tsconfig.json)
+
+// npm은 다운로드, npx는 다운받아서 실행
+// 컨피그에서는 default 5개가 true
+  target: es2016
+  module: commonjs      - js를 임포트할때 requier로 요청할지 모듈로 불러올지 설정
+  strict: true          - 문법 엄격히 체크
+  esModuleInterop: true
+  skipLibCheck: true
+  forceConsistentCasingInFileNames: true 
+
+- 두개 더 켜주기
+    "rootDir": "./src"  // Ts 코드 작성할 때 위치
+    "outDir": "./dist"  // JS 코드 생성할 때 위치
+
+- ts-study/src 파일 ts-study/dist 파일 만들기
+
+- src에서 파일 만들기 => hello.ts < ts형식의 파일 만들때 확장자
+
+[파일 실행 (js vs ts)]
+1. node hello.js
+    name >>> 홍길동
+    // js는 바로 실행이 된다
+
+2. node hello.ts
+    c:\dev\TS\ts-study\src\hello.ts:1
+    let namets: string = "홍길동";
+          ^
+        SyntaxError: Unexpected token ':'
+        at wrapSafe (node:internal/modules/cjs/loader:1469:18)
+        at Module._compile (node:internal/modules/cjs/loader:1491:20)
+        at Object..js (node:internal/modules/cjs/loader:1689:10)
+        at Module.load (node:internal/modules/cjs/loader:1318:32)
+        at Function._load (node:internal/modules/cjs/loader:1128:12)
+        at TracingChannel.traceSync (node:diagnostics_channel:315:14)
+        at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)
+        at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)
+        at node:internal/main/run_main_module:36:49
+
+    // ts는 바로 실행이 안된다 
+    => npx ts-node hello.js     - ts를 컴파일 거쳐서 현재있는 폴더에 hello.js로 만들어져 실행(바로 결과 확인)
+    => npx tsc                  - 컴파일러를 실행 후 결과를 dist에 hello.js 저장(실행은 그 위치에 찾아가서 node hello.js로 실행)
+
+[ts 실행]
+- src 폴더 마우스 오른쪽 > 터미널 오픈
+    npx ts-node hello.ts
+* 리모트 권한 에러
+    - 에러사유 : 리모트로 받은 파일의 권한 받아야함
+    - 해결방법 :
+        powerShell 관리자 권한으로 열기
+        Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+        Y(예)
+    - vsCode 껐다가 재실행
