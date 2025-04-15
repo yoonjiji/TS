@@ -1,0 +1,7 @@
+typescript로 독립적인 애플리케이션을 만들 수 있는가?
+얼마나 사용하는가?
+화면(HTML, React) --> 타입스크립트 --> 서버(자바) --> DB
+React(Javascript)
+React(Javascript > Typescript)
+
+Typescript : OOP(Object Oriented Programming) - 객체지향 프로그래밍
